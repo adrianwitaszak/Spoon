@@ -9,7 +9,8 @@ object Plugins {
     const val SERIALIZATION = "plugin.serialization"
     const val JETBRAINS_COMPOSE = "org.jetbrains.compose"
     const val COCAPODS = "native.cocoapods"
-    const val JETBRAINS_SERIALIZATION = "org.jetbrains.kotlin.plugin.serialization"
     const val SHADOW = "com.github.johnrengelman.shadow"
     const val SQL_DELIGHT = "com.squareup.sqldelight"
+    const val KOTEST_MULTIPLATFORM = "io.kotest.multiplatform"
+    const val KOVER = "org.jetbrains.kotlinx.kover"
 }

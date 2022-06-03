@@ -10,22 +10,28 @@ object Libs {
 
         object Serialization {
             const val common = "org.jetbrains.kotlin:kotlin-serialization:$version"
-            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2"
         }
     }
 
     object Koin {
-        const val version = "3.2"
+        const val version = "3.2.0"
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
     }
 
     object Ktor {
-        private const val version = "2.0.0"
-        const val ktorClient = "io.ktor:ktor-client-core:$version"
+        const val version = "2.0.2"
+        const val core = "io.ktor:ktor-client-core:$version"
+        const val cio = "io.ktor:ktor-client-cio:$version"
         const val ktorClientIOS = "io.ktor:ktor-client-ios:$version"
         const val ktorOkhttp = "io.ktor:ktor-client-okhttp:$version"
 
+        object Plugin {
+            const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
+            const val logging = "io.ktor:ktor-client-logging:$version"
+            const val serializationJson = "io.ktor:ktor-serialization-kotlinx-json:$version"
+        }
     }
 
     object SqlDelight {
@@ -43,17 +49,6 @@ object Libs {
     object Kermit {
         private const val version = "1.0.0"
         const val common = "co.touchlab:kermit:$version"
-    }
-
-    object GradleVersions {
-        const val version = "0.39.0"
-        const val plugin = "com.github.ben-manes.versions"
-    }
-
-    object Settings {
-        private const val version = "0.8.1"
-        const val common = "com.russhwolf:multiplatform-settings:$version"
-        const val coroutines = "com.russhwolf:multiplatform-settings-coroutines:$version"
     }
 
     object JetbrainsCompose {
@@ -84,6 +79,10 @@ object Libs {
     object KotlinTest {
         const val koinTest = "io.insert-koin:koin-test:${Koin.version}"
         const val koinJunit = "io.insert-koin:koin-test-junit4:${Koin.version}"
+        const val mockk = "io.mockk:mockk-common:1.12.4"
         const val truthish = "com.varabyte.truthish:truthish:0.6.3"
+        const val kotest = "io.kotest:kotest-framework-engine:5.0.2"
+        const val kotestAssertions = "io.kotest:kotest-assertions-core:5.0.2"
+        const val ktorMock = "io.ktor:ktor-client-mock:${Ktor.version}"
     }
 }

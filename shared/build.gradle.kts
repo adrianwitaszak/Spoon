@@ -27,10 +27,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(Libs.Kermit.common)
                 implementation(Libs.Kotlin.coroutines)
-                implementation(Libs.Kermit.common)
-                implementation(Libs.Ktor.ktorClient)
-                implementation(Libs.Kotlin.Serialization.json)
+                implementation(Libs.Kotlin.Serialization.core)
+                implementation(Libs.Ktor.core)
+                implementation(Libs.Ktor.cio)
+                implementation(Libs.Ktor.Plugin.logging)
+                implementation(Libs.Ktor.Plugin.contentNegotiation)
+                implementation(Libs.Ktor.Plugin.serializationJson)
             }
 
         }
@@ -59,6 +63,9 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(Libs.KotlinTest.mockk)
+                implementation(Libs.KotlinTest.koinTest)
+                implementation(Libs.KotlinTest.ktorMock)
             }
         }
         val androidTest by getting
@@ -66,7 +73,6 @@ kotlin {
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
         val iosTest by creating {
-            dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
