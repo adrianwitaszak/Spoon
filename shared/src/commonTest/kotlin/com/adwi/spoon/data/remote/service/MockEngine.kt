@@ -13,7 +13,7 @@ import io.ktor.utils.io.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-class MockHttpClient {
+internal class MockHttpClient {
 
     var recipes = mutableListOf<FoodRecipe>()
 

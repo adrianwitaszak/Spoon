@@ -23,20 +23,22 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
                 api(Libs.Kermit.common)
                 implementation(Libs.Kotlin.coroutines)
                 implementation(Libs.Kotlin.Serialization.core)
-                implementation(Libs.Ktor.core)
-                implementation(Libs.Ktor.cio)
-                implementation(Libs.Ktor.Plugin.logging)
-                implementation(Libs.Ktor.Plugin.contentNegotiation)
-                implementation(Libs.Ktor.Plugin.serializationJson)
+                with(Libs.Ktor) {
+                    implementation(core)
+                    implementation(cio)
+                    implementation(logging)
+                    implementation(contentNegotiation)
+                    implementation(serializationJson)
+                }
+                implementation(Libs.Koin.core)
             }
-
         }
         val androidMain by getting {
             dependencies {
@@ -63,12 +65,18 @@ kotlin {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(Libs.KotlinTest.mockk)
-                implementation(Libs.KotlinTest.koinTest)
-                implementation(Libs.KotlinTest.ktorMock)
+                with(Libs.KotlinTest) {
+                    implementation(mockk)
+                    implementation(koinTest)
+                    implementation(ktorMock)
+                }
             }
         }
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
         val iosX64Test by getting
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting

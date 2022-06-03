@@ -7,7 +7,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class SpoonServiceTest {
+internal class SpoonServiceTest {
 
     private lateinit var client: MockHttpClient
     private lateinit var sut: SpoonService

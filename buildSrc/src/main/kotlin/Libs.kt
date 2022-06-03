@@ -27,11 +27,9 @@ object Libs {
         const val ktorClientIOS = "io.ktor:ktor-client-ios:$version"
         const val ktorOkhttp = "io.ktor:ktor-client-okhttp:$version"
 
-        object Plugin {
-            const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
-            const val logging = "io.ktor:ktor-client-logging:$version"
-            const val serializationJson = "io.ktor:ktor-serialization-kotlinx-json:$version"
-        }
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:$version"
+        const val logging = "io.ktor:ktor-client-logging:$version"
+        const val serializationJson = "io.ktor:ktor-serialization-kotlinx-json:$version"
     }
 
     object SqlDelight {
