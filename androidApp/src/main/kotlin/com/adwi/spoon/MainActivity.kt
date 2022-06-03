@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     ) {
                         Text(text = greet())
+                        
                     }
                 }
             }

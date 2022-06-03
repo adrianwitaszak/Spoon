@@ -2,30 +2,34 @@ package com.adwi.spoon.data.remote.service
 
 import com.adwi.spoon.model.FoodRecipe
 import kotlinx.coroutines.runBlocking
-import kotlin.test.*
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 class SpoonServiceTest {
 
-    private val engine: EngineMock = EngineMock()
+    private lateinit var client: MockHttpClient
     private lateinit var sut: SpoonService
 
     @BeforeTest
     fun before() {
+        client = MockHttpClient()
         sut = SpoonServiceImpl(
-            baseURL = "",
-            engine = engine.initEngine()
+            apiKey = "",
+            client = client.initClient()
         )
     }
 
     @AfterTest
     fun teardown() {
-        engine.teardown()
+        client.teardown()
     }
 
     @Test
     fun `test Spoon Service -GIVEN list of FoodRecipes WHEN getRecipes SHOULD return the same list`() =
         runBlocking {
-            engine.recipes.add(FoodRecipe())
+            client.recipes.add(FoodRecipe())
             val actual = sut.getRecipes(mapOf("query" to "pasta")).recipes
             assertTrue(actual.size == 1)
         }
@@ -33,8 +37,8 @@ class SpoonServiceTest {
     @Test
     fun `test2 Spoon Service -GIVEN list of FoodRecipes WHEN getRecipes SHOULD return the same list`() =
         runBlocking {
-            engine.recipes.add(FoodRecipe())
-            engine.recipes.add(FoodRecipe())
+            client.recipes.add(FoodRecipe())
+            client.recipes.add(FoodRecipe())
 
             val actual = sut.getRecipes(mapOf("query" to "pasta")).recipes
 
