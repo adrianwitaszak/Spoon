@@ -10,9 +10,17 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
+import org.koin.core.context.startKoin
+import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
-val commonModule = module {
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+    startKoin {
+        appDeclaration()
+        modules(commonModule, platformModule())
+    }
+
+internal val commonModule = module {
     val baseUrl = getEnv("BASE_URL")
     val apiKey = getEnv("API_KEY")
 
