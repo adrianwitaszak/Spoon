@@ -1,5 +1,3 @@
-import sqldelight.com.squareup.sqlite.migrations.Database
-
 plugins {
     kotlin(Plugins.KOTLIN_MULTIPLATFORM)
     kotlin(Plugins.COCAPODS)
@@ -101,6 +99,6 @@ android {
 
 sqldelight {
     database("spoon_database±") {
-        packageName = "${App.id}/data/local"
+        packageName = App.id
     }
 }
