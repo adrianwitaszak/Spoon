@@ -1,10 +1,10 @@
-package com.adwi.spoon.model
+package com.adwi.spoon.data.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class FoodRecipe(
+data class RecipeDTO(
     @SerialName("id") val id: Int = 0,
     @SerialName("title") val title: String = "",
     @SerialName("summary") val summary: String = "",
@@ -19,5 +19,5 @@ data class FoodRecipe(
     @SerialName("cheap") val cheap: Boolean = false,
     @SerialName("dairyFree") val dairyFree: Boolean = false,
     @SerialName("glutenFree") val glutenFree: Boolean = false,
-    @SerialName("extendedIngredients") val extendedIngredients: List<ExtendedIngredient> = emptyList(),
+    @SerialName("extendedIngredients") val extendedIngredientDTOS: List<ExtendedIngredientDTO> = emptyList(),
 )

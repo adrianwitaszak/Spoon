@@ -1,6 +1,6 @@
 package com.adwi.spoon.data.remote.service
 
-import com.adwi.spoon.model.RecipesResult
+import com.adwi.spoon.data.remote.dto.RecipesResult
 
 interface SpoonService {
 

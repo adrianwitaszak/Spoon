@@ -1,6 +1,6 @@
 import kotlin.collections.List;
 
-CREATE TABLE Recipe(
+CREATE TABLE RecipeEntity(
     id INTEGER NOT NULL PRIMARY KEY,
     title TEXT NOT NULL,
     summary TEXT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE Recipe(
 
 add:
 INSERT
-INTO Recipe(
+INTO RecipeEntity(
 id, title, summary, sourceName, sourceUrl, image, readyInMinutes,
 vegan, vegetarian, veryHealthy, aggregateLikes, cheap, dairyFree,
 glutenFree, extendedIngredients
@@ -30,7 +30,7 @@ VALUES(?, ?, ?, ?, ?,
 ?, ?, ?, ?, ?);
 
 updateById:
-UPDATE Recipe
+UPDATE RecipeEntity
 SET title = ?, summary = ?, sourceName = ?, sourceUrl = ?, image = ?, readyInMinutes = ?,
     vegan = ?, vegetarian = ?, veryHealthy = ?, aggregateLikes = ?, cheap = ?, dairyFree = ?,
     glutenFree = ?, extendedIngredients = ?
@@ -38,18 +38,18 @@ WHERE id = ?;
 
 removeAll:
 DELETE
-FROM Recipe;
+FROM RecipeEntity;
 
 getAll:
 SELECT *
-FROM Recipe;
+FROM RecipeEntity;
 
 getById:
 SELECT *
-FROM Recipe
+FROM RecipeEntity
 WHERE id = ?;
 
 removeById:
 DELETE
-FROM Recipe
+FROM RecipeEntity
 WHERE id = ?;

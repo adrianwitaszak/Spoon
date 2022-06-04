@@ -1,8 +1,10 @@
 package com.adwi.spoon.di
 
+import com.adwi.spoon.data.local.Database
 import com.adwi.spoon.data.remote.service.SpoonService
 import com.adwi.spoon.data.remote.service.SpoonServiceImpl
 import com.adwi.spoon.util.getEnv
+import com.squareup.sqldelight.ColumnAdapter
 import io.ktor.client.*
 import io.ktor.client.engine.*
 import io.ktor.client.plugins.*
@@ -24,18 +26,19 @@ internal val commonModule = module {
     val baseUrl = getEnv("BASE_URL")
     val apiKey = getEnv("API_KEY")
 
-    single { createJson() }
-    single { createHttpClient(get(), get(), baseUrl) }
+    single { provideJson() }
+    single { provideHttpClient(get(), get(), baseUrl) }
     single<SpoonService> { SpoonServiceImpl(apiKey, get()) }
+    single { Database(get(), provideExtendedIngredientsAdapter()) }
 }
 
-internal fun createJson() = Json {
+internal fun provideJson() = Json {
     prettyPrint = true
     isLenient = true
 }
 
-internal fun createHttpClient(engine: HttpClientEngine, json: Json, baseUrl: String): HttpClient =
-    HttpClient(engine) {
+internal fun provideHttpClient(engine: HttpClientEngine, json: Json, baseUrl: String): HttpClient {
+    return HttpClient(engine) {
         install(Logging) {
             level = LogLevel.INFO
         }
@@ -49,3 +52,17 @@ internal fun createHttpClient(engine: HttpClientEngine, json: Json, baseUrl: Str
             requestTimeoutMillis = 1000
         }
     }
+}
+
+internal fun provideExtendedIngredientsAdapter(): ColumnAdapter<List<String>, String> {
+    return object : ColumnAdapter<List<String>, String> {
+        override fun decode(databaseValue: String) =
+            if (databaseValue.isEmpty()) {
+                listOf()
+            } else {
+                databaseValue.split("$")
+            }
+
+        override fun encode(value: List<String>) = value.joinToString(separator = "$")
+    }
+}

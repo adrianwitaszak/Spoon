@@ -1,7 +1,7 @@
 package com.adwi.spoon.data.remote.service
 
-import com.adwi.spoon.model.FoodRecipe
-import com.adwi.spoon.model.RecipesResult
+import com.adwi.spoon.data.remote.dto.RecipeDTO
+import com.adwi.spoon.data.remote.dto.RecipesResult
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.*
@@ -15,7 +15,7 @@ import kotlinx.serialization.json.Json
 
 internal class MockHttpClient {
 
-    var recipes = mutableListOf<FoodRecipe>()
+    var recipes = mutableListOf<RecipeDTO>()
 
     fun initClient(): HttpClient {
         val engine = MockEngine { _ ->

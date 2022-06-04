@@ -1,6 +1,6 @@
 package com.adwi.spoon.data.remote.service
 
-import com.adwi.spoon.model.FoodRecipe
+import com.adwi.spoon.data.remote.dto.RecipeDTO
 import kotlinx.coroutines.runBlocking
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -29,7 +29,7 @@ internal class SpoonServiceTest {
     @Test
     fun `test Spoon Service -GIVEN list of FoodRecipes WHEN getRecipes SHOULD return the same list`() =
         runBlocking {
-            client.recipes.add(FoodRecipe())
+            client.recipes.add(RecipeDTO())
             val actual = sut.getRecipes(mapOf("query" to "pasta")).recipes
             assertTrue(actual.size == 1)
         }
@@ -37,8 +37,8 @@ internal class SpoonServiceTest {
     @Test
     fun `test2 Spoon Service -GIVEN list of FoodRecipes WHEN getRecipes SHOULD return the same list`() =
         runBlocking {
-            client.recipes.add(FoodRecipe())
-            client.recipes.add(FoodRecipe())
+            client.recipes.add(RecipeDTO())
+            client.recipes.add(RecipeDTO())
 
             val actual = sut.getRecipes(mapOf("query" to "pasta")).recipes
 

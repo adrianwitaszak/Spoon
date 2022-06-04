@@ -43,8 +43,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                api(Libs.SqlDelight.Driver.android)
                 implementation(Libs.Ktor.ktorOkhttp)
-                implementation(Libs.SqlDelight.Driver.android)
             }
         }
         val iosX64Main by getting
@@ -57,7 +57,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Libs.Ktor.ktorClientIOS)
-                implementation(Libs.SqlDelight.Driver.native)
+                api(Libs.SqlDelight.Driver.native)
             }
         }
 
@@ -99,7 +99,7 @@ android {
 }
 
 sqldelight {
-    database("spoon_database±") {
+    database("SpoonDatabase") {
         packageName = App.id
     }
 }

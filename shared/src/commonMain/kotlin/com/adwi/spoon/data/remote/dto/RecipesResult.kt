@@ -1,4 +1,4 @@
-package com.adwi.spoon.model
+package com.adwi.spoon.data.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecipesResult(
     @SerialName("results")
-    val recipes: List<FoodRecipe> = emptyList()
+    val recipes: List<RecipeDTO> = emptyList(),
 )

@@ -1,10 +1,10 @@
-package com.adwi.spoon.model
+package com.adwi.spoon.data.remote.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ExtendedIngredient(
+data class ExtendedIngredientDTO(
     @SerialName("name") val name: String = "",
     @SerialName("image") val image: String = "",
     @SerialName("amount") val amount: Double = 0.0,
