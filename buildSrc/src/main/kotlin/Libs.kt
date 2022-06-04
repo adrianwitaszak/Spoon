@@ -79,8 +79,6 @@ object Libs {
         const val koinJunit = "io.insert-koin:koin-test-junit4:${Koin.version}"
         const val mockk = "io.mockk:mockk-common:1.12.4"
         const val truthish = "com.varabyte.truthish:truthish:0.6.3"
-        const val kotest = "io.kotest:kotest-framework-engine:5.0.2"
-        const val kotestAssertions = "io.kotest:kotest-assertions-core:5.0.2"
         const val ktorMock = "io.ktor:ktor-client-mock:${Ktor.version}"
     }
 }
