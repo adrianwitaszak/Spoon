@@ -39,15 +39,20 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation(Libs.Android.core)
-    implementation(Libs.Android.lifecycle)
-    implementation(Libs.Android.Compose.activity)
-    implementation(Libs.Android.Compose.runtime)
-    implementation(Libs.Android.Compose.compiler)
-    implementation(Libs.Android.Compose.ui)
-    implementation(Libs.Android.Compose.material)
-    implementation(Libs.Android.Compose.constrainLayout)
-    implementation(Libs.Android.Compose.paging)
-    implementation(Libs.Android.Compose.navigation)
-    implementation(Libs.Android.Compose.materialIcons)
+    with(Libs.Android) {
+        implementation(core)
+        implementation(lifecycle)
+    }
+    with(Libs.Android.Compose) {
+        implementation(activity)
+        implementation(runtime)
+        implementation(compiler)
+        implementation(ui)
+        implementation(material)
+        implementation(constrainLayout)
+        implementation(paging)
+        implementation(navigation)
+        implementation(materialIcons)
+    }
+    implementation(Libs.Koin.android)
 }

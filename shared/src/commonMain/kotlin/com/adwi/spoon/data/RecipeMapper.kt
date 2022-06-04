@@ -1,8 +1,10 @@
-package com.adwi.spoon.data.remote
+package com.adwi.spoon.data
 
 import com.adwi.spoon.IngredientEntity
 import com.adwi.spoon.RecipeEntity
 import com.adwi.spoon.data.local.dao.IngredientDao
+import com.adwi.spoon.data.remote.dto.ExtendedIngredientDTO
+import com.adwi.spoon.data.remote.dto.RecipeDTO
 import com.adwi.spoon.model.Ingredient
 import com.adwi.spoon.model.Recipe
 
@@ -22,6 +24,24 @@ fun Recipe.toEntity() = RecipeEntity(
     dairyFree = dairyFree,
     glutenFree = glutenFree,
     extendedIngredients = ingredients.map { it.name }
+)
+
+fun RecipeDTO.toEntity() = RecipeEntity(
+    id = id.toLong(),
+    title = title,
+    summary = summary,
+    sourceName = sourceName,
+    sourceUrl = sourceUrl,
+    image = image,
+    readyInMinutes = readyInMinutes,
+    vegan = vegan,
+    vegetarian = vegetarian,
+    veryHealthy = veryHealthy,
+    aggregateLikes = aggregateLikes.toLong(),
+    cheap = cheap,
+    dairyFree = dairyFree,
+    glutenFree = glutenFree,
+    extendedIngredients = extendedIngredientDTOS.map { it.name }
 )
 
 fun RecipeEntity.toDomain(ingredientDao: IngredientDao): Recipe {
@@ -52,6 +72,15 @@ fun IngredientEntity.toDomain() = Ingredient(
     name = name,
     image = image,
     amount = amount ?: 0.0,
+    unit = unit,
+    consistency = consistency,
+    original = original
+)
+
+fun ExtendedIngredientDTO.toEntity() = IngredientEntity(
+    name = name,
+    image = image,
+    amount = amount,
     unit = unit,
     consistency = consistency,
     original = original

@@ -3,6 +3,8 @@ package com.adwi.spoon.di
 import com.adwi.spoon.data.local.Database
 import com.adwi.spoon.data.remote.service.SpoonService
 import com.adwi.spoon.data.remote.service.SpoonServiceImpl
+import com.adwi.spoon.data.repository.SpoonRepository
+import com.adwi.spoon.data.repository.SpoonRepositoryImpl
 import com.adwi.spoon.util.getEnv
 import com.squareup.sqldelight.ColumnAdapter
 import io.ktor.client.*
@@ -30,6 +32,7 @@ internal val commonModule = module {
     single { provideHttpClient(get(), get(), baseUrl) }
     single<SpoonService> { SpoonServiceImpl(apiKey, get()) }
     single { Database(get(), provideExtendedIngredientsAdapter()) }
+    single<SpoonRepository> { SpoonRepositoryImpl(get(), get()) }
 }
 
 internal fun provideJson() = Json {

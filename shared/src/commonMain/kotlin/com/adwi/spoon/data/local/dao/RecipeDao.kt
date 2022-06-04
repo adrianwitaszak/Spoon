@@ -1,34 +1,62 @@
 package com.adwi.spoon.data.local.dao
 
-import com.adwi.spoon.IngredientEntityQueries
+import com.adwi.spoon.RecipeEntity
 import com.adwi.spoon.RecipeEntityQueries
-import com.adwi.spoon.data.remote.toDomain
-import com.adwi.spoon.data.remote.toEntity
-import com.adwi.spoon.model.Recipe
 
-internal class RecipeDao(
+class RecipeDao(
     private val recipeEntityQueries: RecipeEntityQueries,
-    ingredientEntityQueries: IngredientEntityQueries,
-) : CRUDInterface<Recipe> {
+) : CRUDInterface<RecipeEntity> {
 
-    private val ingredientDao: IngredientDao = IngredientDao(ingredientEntityQueries)
-
-    override fun getAll(): List<Recipe> {
-        val entities = recipeEntityQueries.getAll().executeAsList()
-        return entities.map { it.toDomain(ingredientDao) }
+    override fun getAll(): List<RecipeEntity> {
+        return recipeEntityQueries.getAll().executeAsList()
     }
 
-    override fun getByID(id: String): Recipe {
-        val entity = recipeEntityQueries.getById(id.toInt().toLong()).executeAsOne()
-        return entity.toDomain(ingredientDao)
+    override fun getByID(id: String): RecipeEntity {
+        return recipeEntityQueries.getById(id.toInt().toLong()).executeAsOne()
     }
 
-    override fun add(item: Recipe) {
-        item.toEntity()
+    override fun add(item: RecipeEntity) {
+        with(item) {
+            recipeEntityQueries.add(
+                id = id.toInt().toLong(),
+                title = title,
+                summary = summary,
+                sourceName = sourceName,
+                sourceUrl = sourceUrl,
+                image = image,
+                readyInMinutes = readyInMinutes ?: 0,
+                vegan = vegan ?: false,
+                vegetarian = vegetarian ?: false,
+                veryHealthy = veryHealthy ?: false,
+                aggregateLikes = aggregateLikes.toInt().toLong(),
+                cheap = cheap ?: false,
+                dairyFree = dairyFree ?: false,
+                glutenFree = glutenFree ?: false,
+                extendedIngredients = extendedIngredients
+            )
+        }
     }
 
-    override fun update(item: Recipe) {
-        item.toEntity()
+    override fun update(item: RecipeEntity) {
+        with(item) {
+            recipeEntityQueries.updateById(
+                id = id.toInt().toLong(),
+                title = title,
+                summary = summary,
+                sourceName = sourceName,
+                sourceUrl = sourceUrl,
+                image = image,
+                readyInMinutes = readyInMinutes ?: 0,
+                vegan = vegan ?: false,
+                vegetarian = vegetarian ?: false,
+                veryHealthy = veryHealthy ?: false,
+                aggregateLikes = aggregateLikes.toInt().toLong(),
+                cheap = cheap ?: false,
+                dairyFree = dairyFree ?: false,
+                glutenFree = glutenFree ?: false,
+                extendedIngredients = extendedIngredients
+            )
+        }
     }
 
     override fun delete(id: String) {

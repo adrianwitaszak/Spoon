@@ -2,10 +2,11 @@ package com.adwi.spoon.data.local
 
 import com.adwi.spoon.RecipeEntity
 import com.adwi.spoon.SpoonDatabase
+import com.adwi.spoon.data.local.dao.IngredientDao
 import com.adwi.spoon.data.local.dao.RecipeDao
 import com.squareup.sqldelight.ColumnAdapter
 
-internal class Database(
+class Database(
     databaseDriverFactory: DatabaseDriverFactory,
     extendedIngredientsAdapter: ColumnAdapter<List<String>, String>,
 ) {
@@ -16,7 +17,8 @@ internal class Database(
     private val recipeQuery = database.recipeEntityQueries
     private val ingredientQuery = database.ingredientEntityQueries
 
-    val recipeDao: RecipeDao = RecipeDao(recipeQuery, ingredientQuery)
+    val recipeDao: RecipeDao = RecipeDao(recipeQuery)
+    val ingredientDao: IngredientDao = IngredientDao(ingredientQuery)
 
     fun clearDatabase() {
         recipeQuery.transaction {

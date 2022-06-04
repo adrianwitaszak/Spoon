@@ -3,8 +3,9 @@ package com.adwi.spoon.data.local.dao
 import com.adwi.spoon.IngredientEntity
 import com.adwi.spoon.IngredientEntityQueries
 
-class IngredientDao(private val ingredientQueries: IngredientEntityQueries) :
-    CRUDInterface<IngredientEntity> {
+class IngredientDao(
+    private val ingredientQueries: IngredientEntityQueries,
+) : CRUDInterface<IngredientEntity> {
 
     override fun getAll(): List<IngredientEntity> {
         return ingredientQueries.getAll().executeAsList()
