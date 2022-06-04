@@ -1,0 +1,36 @@
+CREATE TABLE Ingredient (
+    name TEXT NOT NULL PRIMARY KEY,
+    image TEXT NOT NULL,
+    amount REAL DEFAULT 0.0,
+    unit TEXT NOT NULL,
+    consistency TEXT NOT NULL,
+    original TEXT NOT NULL
+);
+
+add:
+INSERT
+INTO Ingredient(name, image, amount, unit, consistency, original)
+VALUES(?, ?, ?, ?, ?,?);
+
+updateById:
+UPDATE Ingredient
+SET image = ?, amount = ?, unit = ?, consistency = ?, original = ?
+WHERE name = ?;
+
+removeAll:
+DELETE
+FROM Ingredient;
+
+getAll:
+SELECT *
+FROM Ingredient;
+
+getById:
+SELECT *
+FROM Ingredient
+WHERE name = ?;
+
+removeById:
+DELETE
+FROM Ingredient
+WHERE name = ?;

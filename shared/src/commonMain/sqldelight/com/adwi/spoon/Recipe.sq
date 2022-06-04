@@ -1,0 +1,55 @@
+import kotlin.collections.List;
+
+CREATE TABLE Recipe(
+    id INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    sourceName TEXT NOT NULL,
+    sourceUrl TEXT NOT NULL,
+    image TEXT NOT NULL,
+    readyInMinutes INTEGER AS Int DEFAULT 0,
+    vegan INTEGER AS Boolean DEFAULT 0,
+    vegetarian INTEGER AS Boolean DEFAULT 0,
+    veryHealthy INTEGER AS Boolean DEFAULT 0,
+    aggregateLikes INTEGER NOT NULL,
+    cheap INTEGER AS Boolean DEFAULT 0,
+    dairyFree INTEGER AS Boolean DEFAULT 0,
+    glutenFree INTEGER AS Boolean DEFAULT 0,
+    extendedIngredients TEXT AS List<String> NOT NULL
+);
+
+add:
+INSERT
+INTO Recipe(
+id, title, summary, sourceName, sourceUrl, image, readyInMinutes,
+vegan, vegetarian, veryHealthy, aggregateLikes, cheap, dairyFree,
+glutenFree, extendedIngredients
+)
+VALUES(?, ?, ?, ?, ?,
+?, ?, ?, ?, ?,
+?, ?, ?, ?, ?);
+
+updateById:
+UPDATE Recipe
+SET title = ?, summary = ?, sourceName = ?, sourceUrl = ?, image = ?, readyInMinutes = ?,
+    vegan = ?, vegetarian = ?, veryHealthy = ?, aggregateLikes = ?, cheap = ?, dairyFree = ?,
+    glutenFree = ?, extendedIngredients = ?
+WHERE id = ?;
+
+removeAll:
+DELETE
+FROM Recipe;
+
+getAll:
+SELECT *
+FROM Recipe;
+
+getById:
+SELECT *
+FROM Recipe
+WHERE id = ?;
+
+removeById:
+DELETE
+FROM Recipe
+WHERE id = ?;
