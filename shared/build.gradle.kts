@@ -30,6 +30,7 @@ kotlin {
                 api(Libs.Kermit.common)
                 implementation(Libs.Kotlin.coroutines)
                 implementation(Libs.Kotlin.Serialization.core)
+                implementation(Libs.SqlDelight.coroutines)
                 with(Libs.Ktor) {
                     implementation(core)
                     implementation(cio)
