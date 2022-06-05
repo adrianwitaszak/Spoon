@@ -1,7 +1,7 @@
 package com.adwi.spoon.data.remote.service
 
-import com.adwi.spoon.data.remote.dto.RecipeDTO
-import com.adwi.spoon.data.remote.dto.RecipesResult
+import com.adwi.spoon.data.remote.model.RecipeDTO
+import com.adwi.spoon.data.remote.model.RecipesResult
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
 import io.ktor.client.plugins.*

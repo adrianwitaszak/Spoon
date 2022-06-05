@@ -1,5 +1,6 @@
 package com.adwi.spoon.data.repository
 
+import co.touchlab.kermit.Logger
 import com.adwi.spoon.data.local.Database
 import com.adwi.spoon.data.remote.service.SpoonService
 import com.adwi.spoon.data.toDomain
@@ -30,10 +31,12 @@ class SpoonRepositoryImpl(
         query = {
             val localRecipes = recipeDao.getAll()
             val recipes = localRecipes.map { it.toDomain(ingredientDao) }
+            Logger.i { "SpoonRepositoryImpl - getRecipes - query - ${recipes.size}" }
             flowOf(recipes)
         },
         fetch = {
             val response = service.getRecipes(mapOf("query" to "apple"))
+            Logger.i { "SpoonRepositoryImpl - getRecipes - fetch - ${response.recipes.size}" }
             response.recipes
         },
         saveFetchResult = { remoteRecipes ->
@@ -47,6 +50,8 @@ class SpoonRepositoryImpl(
                 dto.toEntity()
             }
 
+            Logger.i { "SpoonRepositoryImpl - getRecipes - saveFetchRecult - ${recipes.size}" }
+
             recipes.forEach {
                 recipeDao.add(it)
             }
@@ -59,6 +64,7 @@ class SpoonRepositoryImpl(
             if (throwable !is IOException && throwable !is IOException) {
                 throw throwable
             }
+            Logger.i { "SpoonRepositoryImpl - getRecipes - onFetchFailed - ${throwable.message}" }
             onFetchRemoteFailed(throwable)
         }
     )

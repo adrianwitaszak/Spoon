@@ -7,7 +7,7 @@ buildscript {
     dependencies {
         classpath(Libs.gradle)
         classpath(Libs.Kotlin.gradlePlugin)
-        classpath(Libs.Kotlin.Serialization.common)
+        classpath(Libs.Kotlin.serializationGradle)
         classpath(Libs.SqlDelight.gradlePlugin)
     }
 }

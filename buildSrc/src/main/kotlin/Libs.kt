@@ -7,17 +7,15 @@ object Libs {
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
         const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
-
-        object Serialization {
-            const val common = "org.jetbrains.kotlin:kotlin-serialization:$version"
-            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2"
-        }
+        const val serializationGradle = "org.jetbrains.kotlin:kotlin-serialization:$version"
+        const val serializationCore = "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.2"
     }
 
     object Koin {
         const val version = "3.2.0"
         const val core = "io.insert-koin:koin-core:$version"
         const val android = "io.insert-koin:koin-android:$version"
+        const val compose = "io.insert-koin:koin-androidx-compose:$version"
     }
 
     object Ktor {
@@ -35,13 +33,11 @@ object Libs {
     object SqlDelight {
         private const val version = "1.5.3"
         const val gradlePlugin = "com.squareup.sqldelight:gradle-plugin:$version"
+        const val runtime = "com.squareup.sqldelight:runtime:$version"
         const val coroutines = "com.squareup.sqldelight:coroutines-extensions:$version"
-
-        object Driver {
-            const val android = "com.squareup.sqldelight:android-driver:$version"
-            const val sqlite = "com.squareup.sqldelight:sqlite-driver:$version"
-            const val native = "com.squareup.sqldelight:native-driver:$version"
-        }
+        const val driverAndroid = "com.squareup.sqldelight:android-driver:$version"
+        const val driverSqlite = "com.squareup.sqldelight:sqlite-driver:$version"
+        const val driverNative = "com.squareup.sqldelight:native-driver:$version"
     }
 
     object Kermit {

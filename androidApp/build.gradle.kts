@@ -54,5 +54,8 @@ dependencies {
         implementation(navigation)
         implementation(materialIcons)
     }
-    implementation(Libs.Koin.android)
+    with(Libs.Koin) {
+        implementation(android)
+        implementation(compose)
+    }
 }

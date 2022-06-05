@@ -3,8 +3,8 @@ package com.adwi.spoon.data
 import com.adwi.spoon.IngredientEntity
 import com.adwi.spoon.RecipeEntity
 import com.adwi.spoon.data.local.dao.IngredientDao
-import com.adwi.spoon.data.remote.dto.ExtendedIngredientDTO
-import com.adwi.spoon.data.remote.dto.RecipeDTO
+import com.adwi.spoon.data.remote.model.ExtendedIngredientDTO
+import com.adwi.spoon.data.remote.model.RecipeDTO
 import com.adwi.spoon.model.Ingredient
 import com.adwi.spoon.model.Recipe
 

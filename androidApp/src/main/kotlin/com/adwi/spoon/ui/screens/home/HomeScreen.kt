@@ -8,12 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun HomeScreen(
-//    viewModel: HomeViewModel
+    viewModel: HomeViewModel = getViewModel(),
 ) {
-    val viewModel: HomeViewModel by inject()
     val recipes by viewModel.recipes.collectAsState()
 
     LazyColumn(

@@ -28,9 +28,16 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(Libs.Kermit.common)
-                implementation(Libs.Kotlin.coroutines)
-                implementation(Libs.Kotlin.Serialization.core)
-                implementation(Libs.SqlDelight.coroutines)
+                api(Libs.Koin.core)
+                with(Libs.Kotlin) {
+                    implementation(coroutines)
+                    implementation(serializationCore)
+                }
+                with(Libs.SqlDelight) {
+                    implementation(runtime)
+                    implementation(driverSqlite)
+                    implementation(coroutines)
+                }
                 with(Libs.Ktor) {
                     implementation(core)
                     implementation(cio)
@@ -38,12 +45,12 @@ kotlin {
                     implementation(contentNegotiation)
                     implementation(serializationJson)
                 }
-                implementation(Libs.Koin.core)
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
-                api(Libs.SqlDelight.Driver.android)
+                api(Libs.SqlDelight.driverAndroid)
                 implementation(Libs.Ktor.ktorOkhttp)
             }
         }
@@ -57,7 +64,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Libs.Ktor.ktorClientIOS)
-                api(Libs.SqlDelight.Driver.native)
+                api(Libs.SqlDelight.driverNative)
             }
         }
 
@@ -67,13 +74,14 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 with(Libs.KotlinTest) {
-                    implementation(mockk)
-                    implementation(koinTest)
+                    api(mockk)
+                    api(koinTest)
                     implementation(ktorMock)
                 }
             }
         }
         val androidTest by getting {
+            dependsOn(commonTest)
             dependencies {
                 implementation(kotlin("test"))
             }
@@ -82,6 +90,7 @@ kotlin {
         val iosArm64Test by getting
         val iosSimulatorArm64Test by getting
         val iosTest by creating {
+            dependsOn(commonTest)
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)

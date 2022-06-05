@@ -5,3 +5,7 @@ class Greeting {
         return "Hello, ${Platform().platform}!"
     }
 }
+
+fun intApp() {
+
+}

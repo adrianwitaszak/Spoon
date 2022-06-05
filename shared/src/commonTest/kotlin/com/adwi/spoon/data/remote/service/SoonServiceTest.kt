@@ -1,6 +1,6 @@
 package com.adwi.spoon.data.remote.service
 
-import com.adwi.spoon.data.remote.dto.RecipeDTO
+import com.adwi.spoon.data.remote.model.RecipeDTO
 import kotlinx.coroutines.runBlocking
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
