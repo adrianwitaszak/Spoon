@@ -37,28 +37,6 @@ class RecipeDao(
         }
     }
 
-    override fun update(item: RecipeEntity) {
-        with(item) {
-            recipeEntityQueries.updateById(
-                id = id.toInt().toLong(),
-                title = title,
-                summary = summary,
-                sourceName = sourceName,
-                sourceUrl = sourceUrl,
-                image = image,
-                readyInMinutes = readyInMinutes ?: 0,
-                vegan = vegan ?: false,
-                vegetarian = vegetarian ?: false,
-                veryHealthy = veryHealthy ?: false,
-                aggregateLikes = aggregateLikes.toInt().toLong(),
-                cheap = cheap ?: false,
-                dairyFree = dairyFree ?: false,
-                glutenFree = glutenFree ?: false,
-                extendedIngredients = extendedIngredients
-            )
-        }
-    }
-
     override fun delete(id: String) {
         recipeEntityQueries.removeById(id.toInt().toLong())
     }

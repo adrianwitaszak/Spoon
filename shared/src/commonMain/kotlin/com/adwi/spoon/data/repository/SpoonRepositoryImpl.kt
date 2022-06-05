@@ -31,7 +31,6 @@ class SpoonRepositoryImpl(
         query = {
             val localRecipes = recipeDao.getAll()
             val recipes = localRecipes.map { it.toDomain(ingredientDao) }
-            Logger.i { "SpoonRepositoryImpl - getRecipes - query - ${recipes.size}" }
             flowOf(recipes)
         },
         fetch = {
@@ -50,13 +49,11 @@ class SpoonRepositoryImpl(
                 dto.toEntity()
             }
 
-            Logger.i { "SpoonRepositoryImpl - getRecipes - saveFetchRecult - ${recipes.size}" }
-
             recipes.forEach {
                 recipeDao.add(it)
             }
         },
-        shouldFetch = { recipes ->
+        shouldFetch = {
             true
         },
         onFetchSuccess = onFetchSuccess,

@@ -16,7 +16,6 @@ internal class SpoonServiceTest {
     fun before() {
         client = MockHttpClient()
         sut = SpoonServiceImpl(
-            apiKey = "",
             client = client.initClient()
         )
     }

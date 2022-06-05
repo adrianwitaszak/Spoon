@@ -1,11 +1,9 @@
 package com.adwi.spoon.data.remote.service
 
-import co.touchlab.kermit.Logger
 import com.adwi.spoon.data.remote.model.RecipesResult
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.http.*
 
 internal class SpoonServiceImpl(
     private val client: HttpClient,
@@ -18,7 +16,6 @@ internal class SpoonServiceImpl(
                     parameters.append(name = query.key, value = query.value)
                 }
             }
-            Logger.i { "SpoonServiceImpl - getRecipes - \n\nurl = ${url.host}, \nurlPath = ${url.encodedPath},\nurlParameters = ${url.parameters}\n\n" }
         }
         return response.body()
     }

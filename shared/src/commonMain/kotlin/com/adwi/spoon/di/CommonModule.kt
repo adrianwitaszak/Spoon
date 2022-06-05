@@ -58,7 +58,7 @@ internal fun provideHttpClient(json: Json): HttpClient {
             url(Constants.BASE_URL)
         }
         install(HttpTimeout) {
-            requestTimeoutMillis = 1000
+            requestTimeoutMillis = 5000
         }
     }
 }

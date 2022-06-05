@@ -28,19 +28,6 @@ class IngredientDao(
         }
     }
 
-    override fun update(item: IngredientEntity) {
-        with(item) {
-            ingredientQueries.add(
-                name = name,
-                image = image,
-                amount = amount,
-                unit = unit,
-                consistency = consistency,
-                original = original
-            )
-        }
-    }
-
     override fun delete(id: String) {
         ingredientQueries.removeById(id)
     }

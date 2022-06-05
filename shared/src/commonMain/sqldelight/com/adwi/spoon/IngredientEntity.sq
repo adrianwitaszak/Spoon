@@ -8,14 +8,9 @@ CREATE TABLE IngredientEntity (
 );
 
 add:
-INSERT
+INSERT OR REPLACE
 INTO IngredientEntity(name, image, amount, unit, consistency, original)
 VALUES(?, ?, ?, ?, ?,?);
-
-updateById:
-UPDATE IngredientEntity
-SET image = ?, amount = ?, unit = ?, consistency = ?, original = ?
-WHERE name = ?;
 
 removeAll:
 DELETE

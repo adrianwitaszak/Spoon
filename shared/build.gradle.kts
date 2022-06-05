@@ -64,7 +64,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(Libs.Ktor.ktorClientIOS)
-                api(Libs.SqlDelight.driverNative)
+                implementation(Libs.SqlDelight.driverNative)
             }
         }
 

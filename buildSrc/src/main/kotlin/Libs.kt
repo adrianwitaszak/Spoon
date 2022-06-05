@@ -1,6 +1,6 @@
 object Libs {
 
-    const val gradle = "com.android.tools.build:gradle:7.4.0-alpha02"
+    const val gradle = "com.android.tools.build:gradle:7.0.3"
 
     object Kotlin {
         private const val version = "1.6.21"
